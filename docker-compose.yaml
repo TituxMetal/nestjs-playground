@@ -13,5 +13,17 @@ services:
       POSTGRES_PASSWORD: 123
       POSTGRES_DB: nest
 
+  test-db:
+    image: postgres:14.4-alpine
+    ports:
+      - 5435:5432
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: nest-test
+
 volumes:
   postgres-data:
