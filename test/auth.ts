@@ -1,5 +1,6 @@
 import { HttpStatus } from '@nestjs/common'
 import * as pactum from 'pactum'
+import { like } from 'pactum-matchers'
 
 import { AuthDto } from '~/auth/dto'
 
@@ -52,12 +53,15 @@ export const AuthTest = () =>
       it('should throw if no body provided', async () =>
         pactum.spec().post('/auth/signin').expectStatus(HttpStatus.BAD_REQUEST))
 
-      it('should signup', async () =>
+      it('should signin', async () =>
         pactum
           .spec()
           .post('/auth/signin')
           .withBody(dto)
           .expectStatus(HttpStatus.OK)
+          .expectJsonMatch({
+            accessToken: like('eyJhb...')
+          })
           .stores('userAccessToken', 'accessToken'))
     })
   })
