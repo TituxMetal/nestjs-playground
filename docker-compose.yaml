@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   dev-db:
-    image: postgres:14.4-alpine
+    image: postgres:14.5-alpine
     ports:
       - 5434:5432
     volumes:
@@ -14,7 +14,7 @@ services:
       POSTGRES_DB: nest
 
   test-db:
-    image: postgres:14.4-alpine
+    image: postgres:14.5-alpine
     ports:
       - 5435:5432
     volumes:
